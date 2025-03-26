@@ -13,8 +13,8 @@ SplineEditor/
 ├── README.md
 ├── CMakeLists.txt
 ├── src/
-│   ├── b_spline.cpp
 │   ├── controls.cpp
+│   ├── dice_generation.cpp
 │   ├── helper.cpp
 │   ├── main.cpp
 │   ├── rendering.cpp
@@ -23,9 +23,11 @@ SplineEditor/
 │   └── libigl/
 ├── build/
 └── assets/
-    ├── split_2.png
-    ├── split_10.png
-    └── split_50.png
+    ├── dice_4.png
+    ├── dice_6.png
+    ├── dice_8.png
+    ├── dice_12.png
+    └── dice_20.png
 ```
 
 - `README.md`: This file, containing the project documentation.
