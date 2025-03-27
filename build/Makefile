@@ -227,17 +227,17 @@ imguizmo/fast:
 .PHONY : imguizmo/fast
 
 #=============================================================================
-# Target rules for targets named DiceSimulator
+# Target rules for targets named JellySimulation
 
 # Build rule for target.
-DiceSimulator: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DiceSimulator
-.PHONY : DiceSimulator
+JellySimulation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JellySimulation
+.PHONY : JellySimulation
 
 # fast build rule for target.
-DiceSimulator/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/build
-.PHONY : DiceSimulator/fast
+JellySimulation/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/build
+.PHONY : JellySimulation/fast
 
 #=============================================================================
 # Target rules for targets named igl_core
@@ -494,84 +494,36 @@ _deps/imguizmo-src/ImGuizmo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imguizmo.dir/build.make CMakeFiles/imguizmo.dir/_deps/imguizmo-src/ImGuizmo.cpp.s
 .PHONY : _deps/imguizmo-src/ImGuizmo.cpp.s
 
-src/controls.o: src/controls.cpp.o
-.PHONY : src/controls.o
+src/generation.o: src/generation.cpp.o
+.PHONY : src/generation.o
 
 # target to build an object file
-src/controls.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/controls.cpp.o
-.PHONY : src/controls.cpp.o
+src/generation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/generation.cpp.o
+.PHONY : src/generation.cpp.o
 
-src/controls.i: src/controls.cpp.i
-.PHONY : src/controls.i
-
-# target to preprocess a source file
-src/controls.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/controls.cpp.i
-.PHONY : src/controls.cpp.i
-
-src/controls.s: src/controls.cpp.s
-.PHONY : src/controls.s
-
-# target to generate assembly for a file
-src/controls.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/controls.cpp.s
-.PHONY : src/controls.cpp.s
-
-src/dice_generation.o: src/dice_generation.cpp.o
-.PHONY : src/dice_generation.o
-
-# target to build an object file
-src/dice_generation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/dice_generation.cpp.o
-.PHONY : src/dice_generation.cpp.o
-
-src/dice_generation.i: src/dice_generation.cpp.i
-.PHONY : src/dice_generation.i
+src/generation.i: src/generation.cpp.i
+.PHONY : src/generation.i
 
 # target to preprocess a source file
-src/dice_generation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/dice_generation.cpp.i
-.PHONY : src/dice_generation.cpp.i
+src/generation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/generation.cpp.i
+.PHONY : src/generation.cpp.i
 
-src/dice_generation.s: src/dice_generation.cpp.s
-.PHONY : src/dice_generation.s
-
-# target to generate assembly for a file
-src/dice_generation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/dice_generation.cpp.s
-.PHONY : src/dice_generation.cpp.s
-
-src/helper.o: src/helper.cpp.o
-.PHONY : src/helper.o
-
-# target to build an object file
-src/helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/helper.cpp.o
-.PHONY : src/helper.cpp.o
-
-src/helper.i: src/helper.cpp.i
-.PHONY : src/helper.i
-
-# target to preprocess a source file
-src/helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/helper.cpp.i
-.PHONY : src/helper.cpp.i
-
-src/helper.s: src/helper.cpp.s
-.PHONY : src/helper.s
+src/generation.s: src/generation.cpp.s
+.PHONY : src/generation.s
 
 # target to generate assembly for a file
-src/helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/helper.cpp.s
-.PHONY : src/helper.cpp.s
+src/generation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/generation.cpp.s
+.PHONY : src/generation.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -579,7 +531,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -587,32 +539,32 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/rendering.o: src/rendering.cpp.o
-.PHONY : src/rendering.o
+src/simulation.o: src/simulation.cpp.o
+.PHONY : src/simulation.o
 
 # target to build an object file
-src/rendering.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/rendering.cpp.o
-.PHONY : src/rendering.cpp.o
+src/simulation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/simulation.cpp.o
+.PHONY : src/simulation.cpp.o
 
-src/rendering.i: src/rendering.cpp.i
-.PHONY : src/rendering.i
+src/simulation.i: src/simulation.cpp.i
+.PHONY : src/simulation.i
 
 # target to preprocess a source file
-src/rendering.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/rendering.cpp.i
-.PHONY : src/rendering.cpp.i
+src/simulation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/simulation.cpp.i
+.PHONY : src/simulation.cpp.i
 
-src/rendering.s: src/rendering.cpp.s
-.PHONY : src/rendering.s
+src/simulation.s: src/simulation.cpp.s
+.PHONY : src/simulation.s
 
 # target to generate assembly for a file
-src/rendering.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/src/rendering.cpp.s
-.PHONY : src/rendering.cpp.s
+src/simulation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/src/simulation.cpp.s
+.PHONY : src/simulation.cpp.s
 
 # Help Target
 help:
@@ -626,7 +578,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... DiceSimulator"
+	@echo "... JellySimulation"
 	@echo "... glad"
 	@echo "... glfw"
 	@echo "... igl_core"
@@ -662,21 +614,15 @@ help:
 	@echo "... _deps/imguizmo-src/ImGuizmo.o"
 	@echo "... _deps/imguizmo-src/ImGuizmo.i"
 	@echo "... _deps/imguizmo-src/ImGuizmo.s"
-	@echo "... src/controls.o"
-	@echo "... src/controls.i"
-	@echo "... src/controls.s"
-	@echo "... src/dice_generation.o"
-	@echo "... src/dice_generation.i"
-	@echo "... src/dice_generation.s"
-	@echo "... src/helper.o"
-	@echo "... src/helper.i"
-	@echo "... src/helper.s"
+	@echo "... src/generation.o"
+	@echo "... src/generation.i"
+	@echo "... src/generation.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/rendering.o"
-	@echo "... src/rendering.i"
-	@echo "... src/rendering.s"
+	@echo "... src/simulation.o"
+	@echo "... src/simulation.i"
+	@echo "... src/simulation.s"
 .PHONY : help
 
 

@@ -110,7 +110,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/igl_imgui.dir/DependInfo.cmake"
   "CMakeFiles/imgui.dir/DependInfo.cmake"
   "CMakeFiles/imguizmo.dir/DependInfo.cmake"
-  "CMakeFiles/DiceSimulator.dir/DependInfo.cmake"
+  "CMakeFiles/JellySimulation.dir/DependInfo.cmake"
   "_deps/libigl-build/CMakeFiles/igl_core.dir/DependInfo.cmake"
   "_deps/glfw-build/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "_deps/glad-build/CMakeFiles/glad.dir/DependInfo.cmake"

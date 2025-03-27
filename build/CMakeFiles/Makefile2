@@ -68,7 +68,7 @@ all: CMakeFiles/igl_opengl.dir/all
 all: CMakeFiles/igl_imgui.dir/all
 all: CMakeFiles/imgui.dir/all
 all: CMakeFiles/imguizmo.dir/all
-all: CMakeFiles/DiceSimulator.dir/all
+all: CMakeFiles/JellySimulation.dir/all
 all: _deps/libigl-build/all
 all: _deps/glfw-build/all
 all: _deps/glad-build/all
@@ -86,7 +86,7 @@ clean: CMakeFiles/igl_opengl.dir/clean
 clean: CMakeFiles/igl_imgui.dir/clean
 clean: CMakeFiles/imgui.dir/clean
 clean: CMakeFiles/imguizmo.dir/clean
-clean: CMakeFiles/DiceSimulator.dir/clean
+clean: CMakeFiles/JellySimulation.dir/clean
 clean: _deps/libigl-build/clean
 clean: _deps/glfw-build/clean
 clean: _deps/glad-build/clean
@@ -238,7 +238,7 @@ CMakeFiles/imgui.dir/all: _deps/glfw-build/src/CMakeFiles/glfw.dir/all
 CMakeFiles/imgui.dir/all: _deps/glad-build/CMakeFiles/glad.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=26,27,28,29,30,31,32,33,34 "Built target imgui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=24,25,26,27,28,29,30,31,32 "Built target imgui"
 .PHONY : CMakeFiles/imgui.dir/all
 
 # Build rule for subdir invocation for target.
@@ -266,7 +266,7 @@ CMakeFiles/imguizmo.dir/all: _deps/glfw-build/src/CMakeFiles/glfw.dir/all
 CMakeFiles/imguizmo.dir/all: _deps/glad-build/CMakeFiles/glad.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imguizmo.dir/build.make CMakeFiles/imguizmo.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imguizmo.dir/build.make CMakeFiles/imguizmo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=35,36 "Built target imguizmo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=33,34 "Built target imguizmo"
 .PHONY : CMakeFiles/imguizmo.dir/all
 
 # Build rule for subdir invocation for target.
@@ -286,37 +286,37 @@ CMakeFiles/imguizmo.dir/clean:
 .PHONY : CMakeFiles/imguizmo.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/DiceSimulator.dir
+# Target rules for target CMakeFiles/JellySimulation.dir
 
 # All Build rule for target.
-CMakeFiles/DiceSimulator.dir/all: CMakeFiles/igl_glfw.dir/all
-CMakeFiles/DiceSimulator.dir/all: CMakeFiles/igl_opengl.dir/all
-CMakeFiles/DiceSimulator.dir/all: CMakeFiles/igl_imgui.dir/all
-CMakeFiles/DiceSimulator.dir/all: CMakeFiles/imgui.dir/all
-CMakeFiles/DiceSimulator.dir/all: CMakeFiles/imguizmo.dir/all
-CMakeFiles/DiceSimulator.dir/all: _deps/libigl-build/CMakeFiles/igl_core.dir/all
-CMakeFiles/DiceSimulator.dir/all: _deps/glfw-build/src/CMakeFiles/glfw.dir/all
-CMakeFiles/DiceSimulator.dir/all: _deps/glad-build/CMakeFiles/glad.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target DiceSimulator"
-.PHONY : CMakeFiles/DiceSimulator.dir/all
+CMakeFiles/JellySimulation.dir/all: CMakeFiles/igl_glfw.dir/all
+CMakeFiles/JellySimulation.dir/all: CMakeFiles/igl_opengl.dir/all
+CMakeFiles/JellySimulation.dir/all: CMakeFiles/igl_imgui.dir/all
+CMakeFiles/JellySimulation.dir/all: CMakeFiles/imgui.dir/all
+CMakeFiles/JellySimulation.dir/all: CMakeFiles/imguizmo.dir/all
+CMakeFiles/JellySimulation.dir/all: _deps/libigl-build/CMakeFiles/igl_core.dir/all
+CMakeFiles/JellySimulation.dir/all: _deps/glfw-build/src/CMakeFiles/glfw.dir/all
+CMakeFiles/JellySimulation.dir/all: _deps/glad-build/CMakeFiles/glad.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=1,2,3,4 "Built target JellySimulation"
+.PHONY : CMakeFiles/JellySimulation.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/DiceSimulator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles 36
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DiceSimulator.dir/all
+CMakeFiles/JellySimulation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles 34
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/JellySimulation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles 0
-.PHONY : CMakeFiles/DiceSimulator.dir/rule
+.PHONY : CMakeFiles/JellySimulation.dir/rule
 
 # Convenience name for target.
-DiceSimulator: CMakeFiles/DiceSimulator.dir/rule
-.PHONY : DiceSimulator
+JellySimulation: CMakeFiles/JellySimulation.dir/rule
+.PHONY : JellySimulation
 
 # clean rule for target.
-CMakeFiles/DiceSimulator.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiceSimulator.dir/build.make CMakeFiles/DiceSimulator.dir/clean
-.PHONY : CMakeFiles/DiceSimulator.dir/clean
+CMakeFiles/JellySimulation.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JellySimulation.dir/build.make CMakeFiles/JellySimulation.dir/clean
+.PHONY : CMakeFiles/JellySimulation.dir/clean
 
 #=============================================================================
 # Target rules for target _deps/libigl-build/CMakeFiles/igl_core.dir
@@ -351,7 +351,7 @@ _deps/libigl-build/CMakeFiles/igl_core.dir/clean:
 _deps/glfw-build/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/glfw.dir/build.make _deps/glfw-build/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/glfw.dir/build.make _deps/glfw-build/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 "Built target glfw"
 .PHONY : _deps/glfw-build/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
@@ -377,7 +377,7 @@ _deps/glfw-build/src/CMakeFiles/glfw.dir/clean:
 _deps/glad-build/CMakeFiles/glad.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/glad-build/CMakeFiles/glad.dir/build.make _deps/glad-build/CMakeFiles/glad.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/glad-build/CMakeFiles/glad.dir/build.make _deps/glad-build/CMakeFiles/glad.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=7,8 "Built target glad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles --progress-num=5,6 "Built target glad"
 .PHONY : _deps/glad-build/CMakeFiles/glad.dir/all
 
 # Build rule for subdir invocation for target.

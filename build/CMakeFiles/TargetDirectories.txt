@@ -3,7 +3,7 @@
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/igl_imgui.dir
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/imgui.dir
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/imguizmo.dir
-/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/DiceSimulator.dir
+/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/JellySimulation.dir
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/edit_cache.dir
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/rebuild_cache.dir
 /home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build/CMakeFiles/list_install_components.dir

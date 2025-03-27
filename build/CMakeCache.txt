@@ -199,7 +199,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=DiceSimulator
+CMAKE_PROJECT_NAME:STATIC=JellySimulation
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=2.4.0
@@ -390,6 +390,15 @@ GLFW_VULKAN_STATIC:BOOL=OFF
 
 //Enable Hunter package manager support
 HUNTER_ENABLED:BOOL=OFF
+
+//Value Computed by CMake
+JellySimulation_BINARY_DIR:STATIC=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator/build
+
+//Value Computed by CMake
+JellySimulation_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+JellySimulation_SOURCE_DIR:STATIC=/home/sauterelle/Documents/Concordia/COMP438/DiceSimulator
 
 //Build libigl unit test
 LIBIGL_BUILD_TESTS:BOOL=OFF

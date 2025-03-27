@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(DiceSimulator)
+project(JellySimulation)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -18,4 +18,4 @@ add_executable(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} PUBLIC
   igl::glfw
   igl::imgui
-  )
+)
