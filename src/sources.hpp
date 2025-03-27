@@ -3,6 +3,9 @@
 
 #include <Eigen/Dense>
 
+inline int selected_vertex = -1;
+inline Eigen::MatrixXd V;
+inline Eigen::MatrixXi F;
 
 void generate_cube(double size, Eigen::MatrixXd& V, Eigen::MatrixXi& F);
 // void generate_cube(double size, int sub_division, Eigen::MatrixXd& V, Eigen::MatrixXi& F);
@@ -16,6 +19,8 @@ Eigen::MatrixXd compute_spring_forces(
     const Eigen::MatrixXd& V_prev = Eigen::MatrixXd()
 );
 
-bool callback_pre_draw(igl::opengl::glfw::Viewer& viewer);
+bool mouse_down_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier);
+bool mouse_move_callback(igl::opengl::glfw::Viewer& viewer, int mouse_x, int mouse_y);
+bool mouse_up_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier);
 
 #endif // _SOURCES_HPP

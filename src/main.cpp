@@ -7,8 +7,6 @@
 
 int main() {
     // 1. Générer un cube
-    Eigen::MatrixXd V;
-    Eigen::MatrixXi F;
     generate_cube(0.5, V, F);
     // Générer le sol
     Eigen::MatrixXd V_ground;
@@ -35,22 +33,39 @@ int main() {
     viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
 
     // 5. Boucle de simulation
+    // viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer& viewer) -> bool {
+    //     Eigen::MatrixXd forces = compute_spring_forces(V, E, 20.0, 0.01, V_prev);
+
+    //     velocity += dt * forces;
+    //     V += dt * velocity;
+    //     V_prev = V;
+
+    //     for (int i = 0; i < V.rows(); ++i) {
+    //         if (V(i, 1) < -1.0) {
+    //             V(i, 1) = -1.0;
+    //             velocity(i, 1) *= -0.3;
+    //         }
+    //     }
+
+    //     viewer.data(cube_layer).set_vertices(V);
+    //     viewer.data(cube_layer).compute_normals();
+    //     return false;
+    // };
+    viewer.callback_mouse_down = mouse_down_callback;
+    viewer.callback_mouse_move = mouse_move_callback;
+    viewer.callback_mouse_up = mouse_up_callback;
+
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer& viewer) -> bool {
-        Eigen::MatrixXd forces = compute_spring_forces(V, E, 20.0, 0.01, V_prev);
-
-        velocity += dt * forces;
-        V += dt * velocity;
-        V_prev = V;
-
-        for (int i = 0; i < V.rows(); ++i) {
-            if (V(i, 1) < -1.0) {
-                V(i, 1) = -1.0;
-                velocity(i, 1) *= -0.3;
-            }
+        if (selected_vertex == -1) { // Applique la physique seulement si rien n'est sélectionné
+            Eigen::MatrixXd forces = compute_spring_forces(V, E, 10.0, 0.05);
+            velocity += dt * forces;
+            V += dt * velocity;
+        } else { // Sinon, annule les forces sur le sommet sélectionné
+            velocity.row(selected_vertex).setZero();
         }
 
-        viewer.data(cube_layer).set_vertices(V);
-        viewer.data(cube_layer).compute_normals();
+        viewer.data().set_vertices(V);
+        viewer.data().compute_normals();
         return false;
     };
 

@@ -1,19 +1,19 @@
 
 #include <Eigen/Dense>
 
-void generate_ground(double size, Eigen::MatrixXd& V, Eigen::MatrixXi& F)
+void generate_ground(double size, Eigen::MatrixXd& V_ground, Eigen::MatrixXi& F_ground)
 {
-    V.resize(4, 3);
-    F.resize(2, 3);
+    V_ground.resize(4, 3);
+    F_ground.resize(2, 3);
 
     size /= 2.0;
 
-    V << -size, -1, -size,
+    V_ground << -size, -1, -size,
           size, -1, -size,
           size, -1, size,
          -size, -1, size;
 
-    F << 0, 2, 1,
+    F_ground << 0, 2, 1,
          0, 3, 2;
 }
 

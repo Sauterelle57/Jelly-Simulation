@@ -1,33 +1,31 @@
-# SplineEditor
+# Jelly Simulation
 
 ## Project
 
-This project is a C++ application utilizing the [Libigl](https://libigl.github.io/) library to develop a fundamental spline editor.
+Jelly Simulation is a simulation project that models the behavior of a jelly cube object. The project uses numerical methods to simulate the deformation and movement of the jelly.
+
+The simulation is implemented in C++ and uses libraries such as [libigl](https://libigl.github.io/) for geometry processing. Users can interact with the simulation through controls to manipulate the jelly and observe its dynamic responses in real-time thanks to the [ImGui library](https://github.com/ocornut/imgui).
 
 ### Hierarchy
 
 The project structure is organized as follows:
 
 ```
-SplineEditor/
+JellySimulation/
 ├── README.md
 ├── CMakeLists.txt
 ├── src/
 │   ├── controls.cpp
-│   ├── dice_generation.cpp
-│   ├── helper.cpp
+│   ├── generation.cpp
 │   ├── main.cpp
-│   ├── rendering.cpp
+│   ├── simulation.cpp
 │   └── sources.hpp
 ├── cmake/
 │   └── libigl/
 ├── build/
 └── assets/
-    ├── dice_4.png
-    ├── dice_6.png
-    ├── dice_8.png
-    ├── dice_12.png
-    └── dice_20.png
+    ├──
+    └──
 ```
 
 - `README.md`: This file, containing the project documentation.
@@ -46,50 +44,22 @@ Compile this project using the standard cmake routine:
     cmake ..
     make
 
-This should find and build the dependencies and create a `SplineEditor` binary.
+This should find and build the dependencies and create a `JellySimulation` binary.
 
 ## Run
 
 From within the `build` directory execute the command:
 
-    ./SplineEditor [split] [step]
-
-Both `[split]` and `[step]` are optional parameters that can be used to customize the behavior of the spline editor:
-
-- **[step]** The distance to move a point
-- **[split]** The number of points between two control
+    ./JellySimulation
 
 ## Controls
 
-Use the following controls to interact with the spline editor:
-
-- **`Tab+click`** Selecte a point
-- **`W`** Move selected point up
-- **`A`** Move selected point left
-- **`S`** Move selected point down
-- **`D`** Move selected point right
-- **`Q`** Move selected point forward
-- **`E`** Move selected point
-- **`H`** Display the help message
-- **`C`** Display / Hide control points
-- **`B`** Display / Hide surface
-
 ## Galery
 
-### Example with split = 2
-
-![Example with split = 2](/assets/split_2.png)
-
-### Example with split = 10
-
-![Example with split = 10](/assets/split_10.png)
-
-### Example with split = 50
-
-![Example with split = 50](/assets/split_50.png)
+###
 
 ## Author
 
 This project was created by [Marie Giacomel](https://www.linkedin.com/in/marie-giacomel/).
 
-Thank you for reading! Enjoy using the SplineEditor!
+Thank you for reading! Enjoy using the Jelly Simulation!

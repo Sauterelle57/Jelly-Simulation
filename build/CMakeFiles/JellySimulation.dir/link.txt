@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/JellySimulation.dir/src/generation.cpp.o CMakeFiles/JellySimulation.dir/src/main.cpp.o CMakeFiles/JellySimulation.dir/src/simulation.cpp.o -o JellySimulation  /usr/lib/x86_64-linux-gnu/libOpenGL.so libimguizmo.a libimgui.a _deps/glfw-build/src/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.a -lm _deps/glad-build/libglad.a -ldl 
