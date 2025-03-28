@@ -6,6 +6,8 @@
 inline int selected_vertex = -1;
 inline Eigen::MatrixXd V;
 inline Eigen::MatrixXi F;
+inline Eigen::MatrixXd V_original;
+inline Eigen::MatrixXi F_original;
 inline bool initialized_diagonals = false;
 inline Eigen::MatrixXi E_diag;
 
