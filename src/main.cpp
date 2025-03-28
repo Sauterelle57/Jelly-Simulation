@@ -16,8 +16,8 @@
 // }
 
 int main() {
-    generate_cube(2, V, F);
-    // generate_icosahedron(1, V, F);
+    // generate_cube(2, V, F);
+    generate_icosahedron(1, V, F);
     // igl::readOFF("bumpy.off", V, F);
     V.rowwise() += Eigen::RowVector3d(0.0, 5.0, 0.0);
 
@@ -47,6 +47,13 @@ int main() {
     int ground_layer = viewer.append_mesh();
     viewer.data(ground_layer).set_mesh(V_ground, F_ground);
     viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
+
+    viewer.callback_key_down = [&](igl::opengl::glfw::Viewer&, unsigned int key, int) -> bool {
+        if (key == 'A') {
+            playing = !playing;
+        }
+        return false;
+    };
 
     // igl::opengl::glfw::imgui::ImGuiPlugin plugin;
     // viewer.plugins.push_back(&plugin);
@@ -78,6 +85,9 @@ int main() {
     // };
 
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer& viewer) -> bool {
+        if (!playing) {
+            return false;
+        }
         if (selected_vertex == -1) {
             Eigen::MatrixXd forces = compute_spring_forces(V, E, stiffness, damping);
 
