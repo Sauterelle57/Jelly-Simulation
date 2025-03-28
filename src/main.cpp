@@ -6,66 +6,67 @@
 #include "sources.hpp"
 
 int main() {
-    // 1. Générer un cube
-    generate_cube(0.5, V, F);
-    // Générer le sol
+    generate_cube(2, V, F);
+    // generate_icosahedron(1, V, F);
+    // igl::readOFF("bumpy.off", V, F);
+    V.rowwise() += Eigen::RowVector3d(0.0, 2.0, 0.0);
+
     Eigen::MatrixXd V_ground;
     Eigen::MatrixXi F_ground;
-    generate_ground(3.0, V_ground, F_ground);
+    generate_ground(10.0, V_ground, F_ground);
 
-    // 3. Extraire les arêtes pour les ressorts
     Eigen::MatrixXi E;
     igl::edges(F, E);
 
-    // 3. Initialiser la simulation
     Eigen::MatrixXd velocity = Eigen::MatrixXd::Zero(V.rows(), 3);
     Eigen::MatrixXd V_prev = V;
-    double dt = 0.05;
+    double dt = 0.1; // 0.05
 
-    // 4. Afficher avec libigl
     igl::opengl::glfw::Viewer viewer;
-    int cube_layer = viewer.append_mesh();
-    viewer.data(cube_layer).set_mesh(V, F);
+    int model_layer = viewer.append_mesh();
+    viewer.data(model_layer).set_mesh(V, F);
     viewer.core().is_animating = true;
 
     int ground_layer = viewer.append_mesh();
     viewer.data(ground_layer).set_mesh(V_ground, F_ground);
     viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
 
-    // 5. Boucle de simulation
-    // viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer& viewer) -> bool {
-    //     Eigen::MatrixXd forces = compute_spring_forces(V, E, 20.0, 0.01, V_prev);
-
-    //     velocity += dt * forces;
-    //     V += dt * velocity;
-    //     V_prev = V;
-
-    //     for (int i = 0; i < V.rows(); ++i) {
-    //         if (V(i, 1) < -1.0) {
-    //             V(i, 1) = -1.0;
-    //             velocity(i, 1) *= -0.3;
-    //         }
-    //     }
-
-    //     viewer.data(cube_layer).set_vertices(V);
-    //     viewer.data(cube_layer).compute_normals();
-    //     return false;
-    // };
-    viewer.callback_mouse_down = mouse_down_callback;
-    viewer.callback_mouse_move = mouse_move_callback;
-    viewer.callback_mouse_up = mouse_up_callback;
-
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer& viewer) -> bool {
-        if (selected_vertex == -1) { // Applique la physique seulement si rien n'est sélectionné
-            Eigen::MatrixXd forces = compute_spring_forces(V, E, 10.0, 0.05);
+        if (selected_vertex == -1) {
+            Eigen::MatrixXd forces = compute_spring_forces(V, E, 1.0, 0.1); //20 0.05
+
+            velocity *= 0.98;
+
+            // double current_volume = approximate_volume(V, F);
+            // static double rest_volume = current_volume;
+            // double volume_ratio = current_volume / rest_volume;
+
+            // if (volume_ratio != 1.0) {
+            //     double intensity = (1.0 - volume_ratio) * 30.0;
+            //     Eigen::RowVector3d center = V.colwise().mean();
+            //     Eigen::MatrixXd expansion_force = Eigen::MatrixXd::Zero(V.rows(), 3);
+
+            //     for (int i = 0; i < V.rows(); ++i) {
+            //         Eigen::RowVector3d dir = (V.row(i) - center).normalized();
+            //         expansion_force.row(i) = dir * intensity;
+            //     }
+            //     forces += expansion_force;
+            // }
+
             velocity += dt * forces;
             V += dt * velocity;
-        } else { // Sinon, annule les forces sur le sommet sélectionné
-            velocity.row(selected_vertex).setZero();
-        }
 
-        viewer.data().set_vertices(V);
-        viewer.data().compute_normals();
+            for (int i = 0; i < V.rows(); ++i) {
+                if (V(i, 1) < -1.0) {
+                    V(i, 1) = -1.0;
+                    velocity(i, 1) *= -0.03;
+                    velocity(i, 0) *= 0.5;
+                    velocity(i, 2) *= 0.5;
+                }
+            }
+        }
+        viewer.data(model_layer).set_vertices(V);
+        viewer.data(model_layer).compute_normals();
         return false;
     };
 
