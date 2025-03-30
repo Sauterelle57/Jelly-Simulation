@@ -4,29 +4,12 @@
 
 #include "sources.hpp"
 
-void resetSimulation() {
-    auto &g = Global::getInstance();
-    auto &V = g.V;
-
-    V = g.V_original;
-    g.F = g.F_original;
-    g.selected_vertex = -1;
-    g.viewer.data().set_vertices(V);
-    g.dt = 0.1f; // 0.05
-    g.stiffness = 5.0; // 20
-    g.damping = 0.2; // 0.05
-    g.playing = false;
-    g.velocity = Eigen::MatrixXd::Zero(V.rows(), 3);
-}
-
 void menu()
 {
     auto &g = Global::getInstance();
     auto &playing = g.playing;
 
-    // igl::opengl::glfw::imgui::ImGuiPlugin plugin;
     g.viewer.plugins.push_back(&g.plugin);
-    // igl::opengl::glfw::imgui::ImGuiMenu menu;
     g.plugin.widgets.push_back(&g.menu);
 
     g.menu.callback_draw_viewer_menu = [&]() {
@@ -34,11 +17,33 @@ void menu()
             if (ImGui::Button(playing ? "Pause" : "Play", ImVec2(-1, 0))) {
                 playing = !playing;
             }
-            ImGui::SliderFloat("Speed", &g.dt, 0.01f, 0.5f);
-            ImGui::SliderFloat("Stiffness", &g.stiffness, 0.1f, 30.0f);
-            ImGui::SliderFloat("Damping", &g.damping, 0.01f, 0.5f);
             if (ImGui::Button("Reset", ImVec2(-1, 0))) {
-                resetSimulation();
+                init();
+            }
+            ImGui::SliderFloat("Height", &g.height, 0.5f, 10.0f);
+            if (ImGui::Button("Cube", ImVec2(-1, 0))) {
+                g.model = Model::CUBE;
+                init();
+            }
+            if (ImGui::Button("Icosahedron", ImVec2(-1, 0))) {
+                g.model = Model::ICOSAHEDRON;
+                init();
+            }
+            if (ImGui::Button("Pyramid", ImVec2(-1, 0))) {
+                g.model = Model::PYRAMID;
+                init();
+            }
+            if (ImGui::Button("Cone 1", ImVec2(-1, 0))) {
+                g.model = Model::CONE1;
+                init();
+            }
+            if (ImGui::Button("Cone 2", ImVec2(-1, 0))) {
+                g.model = Model::CONE2;
+                init();
+            }
+            if (ImGui::Button("Cylinder", ImVec2(-1, 0))) {
+                g.model = Model::CYLINDER;
+                init();
             }
         }
     };

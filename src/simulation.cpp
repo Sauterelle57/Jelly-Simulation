@@ -1,5 +1,6 @@
 #include <iostream>
-#include <Eigen/Dense>
+
+#include "sources.hpp"
 
 double approximate_volume(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F)
 {
@@ -16,10 +17,12 @@ double approximate_volume(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F)
 Eigen::MatrixXd compute_spring_forces(
     const Eigen::MatrixXd& V,
     const Eigen::MatrixXi& E,
-    double stiffness = 1.0,
-    double damping = 0.1,
-    const Eigen::MatrixXd& V_prev = Eigen::MatrixXd()
+    double stiffness,
+    double damping,
+    const Eigen::MatrixXd& V_prev
 ) {
+    auto &g = Global::getInstance();
+    static Model model_used = g.model;
     Eigen::MatrixXd forces = Eigen::MatrixXd::Zero(V.rows(), 3);
 
     for (int i = 0; i < E.rows(); ++i) {
@@ -32,6 +35,13 @@ Eigen::MatrixXd compute_spring_forces(
         if (distance < 1e-10) continue;
 
         static std::vector<double> rest_lengths;
+        if (model_used != g.model || rest_lengths.size() != E.rows()) {
+            rest_lengths.resize(E.rows());
+            for (int j = 0; j < E.rows(); ++j) {
+                rest_lengths[j] = (V.row(E(j, 1)) - V.row(E(j, 0))).norm();
+            }
+            model_used = g.model;
+        }
         if (rest_lengths.empty()) {
             rest_lengths.resize(E.rows());
             for (int j = 0; j < E.rows(); ++j) {
@@ -46,7 +56,7 @@ Eigen::MatrixXd compute_spring_forces(
         if (V_prev.rows() == V.rows()) {
             Eigen::Vector3d vel_rel = (V_prev.row(v1) - V_prev.row(v0));
             double damping_magnitude = damping * vel_rel.dot(delta.normalized());
-            Eigen::Vector3d f_damping = damping_magnitude * delta.normalized();
+            const Eigen::Vector3d f_damping = damping_magnitude * delta.normalized();
             f_spring += f_damping;
         }
 

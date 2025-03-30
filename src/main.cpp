@@ -6,20 +6,27 @@
 
 #include "sources.hpp"
 
-void init() {
+void init2()
+{
     auto &g = Global::getInstance();
     auto &viewer = g.viewer;
     auto &V = g.V;
     auto &F = g.F;
+    auto &E = g.E;
 
-    load_models(Model::ICOSAHEDRON, V, F);
-    g.V_original = V;
-    g.F_original = F;
-    Eigen::MatrixXd V_ground;
-    Eigen::MatrixXi F_ground;
-    load_models(Model::GROUND, V_ground, F_ground);
-    igl::edges(F, g.E);
+    V = Eigen::MatrixXd();
+    F = Eigen::MatrixXi();
+    E = Eigen::MatrixXi();
 
+    // viewer.data().clear();
+    viewer.data(g.model_layer).clear();
+
+    // V = Eigen::MatrixXd();
+    // F = Eigen::MatrixXi();
+    // std::cout << "V: "<< V << std::endl;
+    load_models(g.model, V, F);
+
+    g.playing = false;
     g.dt = 0.1f; // 0.05
     g.stiffness = 5.0; // 20
     g.damping = 0.2; // 0.05
@@ -27,8 +34,56 @@ void init() {
 
     viewer.data(g.model_layer).set_mesh(V, F);
     viewer.core().is_animating = true;
+    igl::edges(F, E);
 
-    static int ground_layer = viewer.append_mesh();
+    static int ground_layer = -1;
+    // if (ground_layer != -1) return;
+    ground_layer = viewer.append_mesh();
+    Eigen::MatrixXd V_ground;
+    Eigen::MatrixXi F_ground;
+    load_models(Model::GROUND, V_ground, F_ground);
+
+    viewer.data(ground_layer).set_mesh(V_ground, F_ground);
+    viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
+}
+
+void init()
+{
+    auto &g = Global::getInstance();
+    auto &viewer = g.viewer;
+
+    if (g.model_layer == -1) {
+        g.model_layer = viewer.append_mesh();
+    }
+
+    g.V.resize(0, 0);
+    g.F.resize(0, 0);
+    g.E.resize(0, 0);
+
+    viewer.data(g.model_layer).clear();
+
+    load_models(g.model, g.V, g.F);
+
+    igl::edges(g.F, g.E);
+
+    g.playing = false;
+    g.dt = 0.1f;
+    g.stiffness = 5.0;
+    g.damping = 0.2;
+    g.velocity = Eigen::MatrixXd::Zero(g.V.rows(), 3);
+
+    viewer.data(g.model_layer).set_mesh(g.V, g.F);
+    viewer.core().is_animating = true;
+
+    static int ground_layer = -1;
+    if (ground_layer == -1) {
+        ground_layer = viewer.append_mesh();
+    }
+
+    Eigen::MatrixXd V_ground;
+    Eigen::MatrixXi F_ground;
+    load_models(Model::GROUND, V_ground, F_ground);
+
     viewer.data(ground_layer).set_mesh(V_ground, F_ground);
     viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
 }
@@ -38,56 +93,36 @@ int main() {
 
     auto &g = Global::getInstance();
     auto &viewer = g.viewer;
-    auto &V = g.V;
-    auto &velocity = g.velocity;
-    auto &dt = g.dt;
-    auto &playing = g.playing;
 
     viewer.callback_key_down = [&](igl::opengl::glfw::Viewer &, unsigned int key, int) -> bool {
-        if (key == 'A') playing = !playing;
+        auto &global = Global::getInstance();
+        if (key == 'A') global.playing = !global.playing;
         return false;
     };
 
     menu();
-    // igl::opengl::glfw::imgui::ImGuiPlugin plugin;
-    // g.viewer.plugins.push_back(&plugin);
-    // igl::opengl::glfw::imgui::ImGuiMenu menu;
-    // plugin.widgets.push_back(&menu);
-    //
-    // menu.callback_draw_viewer_menu = [&]() {
-    //     if (ImGui::CollapsingHeader("Simulation", ImGuiTreeNodeFlags_DefaultOpen)) {
-    //         if (ImGui::Button(playing ? "Pause" : "Play", ImVec2(-1, 0))) {
-    //             playing = !playing;
-    //         }
-    //         ImGui::SliderFloat("Speed", &g.dt, 0.01f, 0.5f);
-    //         ImGui::SliderFloat("Stiffness", &g.stiffness, 0.1f, 30.0f);
-    //         ImGui::SliderFloat("Damping", &g.damping, 0.01f, 0.5f);
-    //         // if (ImGui::Button("Reset", ImVec2(-1, 0))) {
-    //         //     resetSimulation();
-    //         // }
-    //     }
-    // };
 
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer &viewer_ptr) -> bool {
-        if (!playing) return false;
+        auto &global = Global::getInstance();
+        if (!global.playing) return false;
 
-        const Eigen::MatrixXd forces = compute_spring_forces(g.V, g.E, g.stiffness, g.damping);
+        const Eigen::MatrixXd forces = compute_spring_forces(global.V, global.E, global.stiffness, global.damping);
 
-        velocity *= 0.98;
-        velocity += g.dt * forces;
-        g.V += g.dt * velocity;
+        global.velocity *= 0.98;
+        global.velocity += global.dt * forces;
+        global.V += global.dt * global.velocity;
 
-        for (int i = 0; i < g.V.rows(); ++i) {
-            if (g.V(i, 1) < -1.0) {
-                g.V(i, 1) = -1.0;
-                velocity(i, 1) *= -0.03;
-                velocity(i, 0) *= 0.5;
-                velocity(i, 2) *= 0.5;
+        for (int i = 0; i < global.V.rows(); ++i) {
+            if (global.V(i, 1) < -1.0) {
+                global.V(i, 1) = -1.0;
+                global.velocity(i, 1) *= -0.03;
+                global.velocity(i, 0) *= 0.5;
+                global.velocity(i, 2) *= 0.5;
             }
         }
 
-        viewer_ptr.data(g.model_layer).set_vertices(g.V);
-        viewer_ptr.data(g.model_layer).compute_normals();
+        viewer_ptr.data(global.model_layer).set_vertices(global.V);
+        viewer_ptr.data(global.model_layer).compute_normals();
         return false;
     };
 
