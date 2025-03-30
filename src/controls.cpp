@@ -4,7 +4,11 @@
 
 #include "sources.hpp"
 
-bool mouse_down_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier) {
+bool mouse_down_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier)
+{
+    auto &g = Global::getInstance();
+    auto &V = g.V;
+
     if (button == GLFW_MOUSE_BUTTON_LEFT) {
         double x = viewer.current_mouse_x;
         double y = viewer.core().viewport(3) - viewer.current_mouse_y;
@@ -24,14 +28,18 @@ bool mouse_down_callback(igl::opengl::glfw::Viewer& viewer, int button, int modi
                 closest_vertex = i;
             }
         }
-        selected_vertex = closest_vertex;
+        g.selected_vertex = closest_vertex;
         return true;
     }
     return false;
 }
 
-bool mouse_move_callback(igl::opengl::glfw::Viewer& viewer, int mouse_x, int mouse_y) {
-    if (selected_vertex != -1) {
+bool mouse_move_callback(igl::opengl::glfw::Viewer& viewer, int mouse_x, int mouse_y)
+{
+    auto &g = Global::getInstance();
+    auto &V = g.V;
+
+    if (g.selected_vertex != -1) {
         float x = viewer.current_mouse_x;
         float y = viewer.core().viewport[3] - viewer.current_mouse_y;
 
@@ -46,16 +54,19 @@ bool mouse_move_callback(igl::opengl::glfw::Viewer& viewer, int mouse_x, int mou
             viewer.core().proj,
             viewer.core().viewport
         );
-        V.row(selected_vertex) = pos_3d.cast<double>();
+        V.row(g.selected_vertex) = pos_3d.cast<double>();
         viewer.data().set_vertices(V);
         return true;
     }
     return false;
 }
 
-bool mouse_up_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier) {
+bool mouse_up_callback(igl::opengl::glfw::Viewer& viewer, int button, int modifier)
+{
+    auto &g = Global::getInstance();
+
     if (button == GLFW_MOUSE_BUTTON_LEFT) {
-        selected_vertex = -1;
+        g.selected_vertex = -1;
         return true;
     }
     return false;
