@@ -20,7 +20,9 @@ void menu()
             if (ImGui::Button("Reset", ImVec2(-1, 0))) {
                 init();
             }
-            ImGui::SliderFloat("Height", &g.height, 0.5f, 10.0f);
+            if (ImGui::SliderFloat("Height", &g.height, 0.5f, 30.0f)) {
+                init();
+            }
             if (ImGui::Button("Cube", ImVec2(-1, 0))) {
                 g.model = Model::CUBE;
                 init();

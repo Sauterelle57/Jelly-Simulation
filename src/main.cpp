@@ -104,6 +104,15 @@ int main() {
 
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer &viewer_ptr) -> bool {
         auto &global = Global::getInstance();
+        static float height = g.height;
+
+        // if (global.V.rows() > 0 && V_original.rows() == 0) {
+        //     V_original = global.V;
+        // }
+
+        // if (global.height != height) {
+        //     init();
+        // }
         if (!global.playing) return false;
 
         const Eigen::MatrixXd forces = compute_spring_forces(global.V, global.E, global.stiffness, global.damping);

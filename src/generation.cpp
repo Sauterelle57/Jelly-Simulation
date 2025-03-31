@@ -141,5 +141,5 @@ void load_models(Model model, Eigen::MatrixXd& V_src, Eigen::MatrixXi& F_src)
         return;
     }
 
-    V_src.rowwise() += Eigen::RowVector3d(0.0, 5.0, 0.0);
+    V_src.rowwise() += Eigen::RowVector3d(0.0, g.height, 0.0);
 }
