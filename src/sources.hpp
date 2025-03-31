@@ -1,7 +1,6 @@
 #ifndef _SOURCES_HPP
 #define _SOURCES_HPP
 
-#include <Eigen/Dense>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/opengl/glfw/imgui/ImGuiPlugin.h>
 #include <igl/opengl/glfw/imgui/ImGuiMenu.h>
@@ -11,13 +10,9 @@ enum class Model
     CUBE,
     ICOSAHEDRON,
     PYRAMID,
-    CONE1,
-    CONE2,
+    CONE,
     CYLINDER,
-        SPHERE1,
-        SPHERE2,
-        SPHERE3,
-        TORUS,
+    PENTAGON,
     GROUND
 };
 
@@ -38,9 +33,9 @@ class Global
         float height = 2.0f;
 
         bool playing = false;
-        float dt = 0.1f; // 0.05
-        float stiffness = 5.0; // 20
-        float damping = 0.2; // 0.05
+        float dt = 0.1f;
+        float stiffness = 5.0;
+        float damping = 0.2;
         Eigen::MatrixXd velocity = Eigen::MatrixXd::Zero(V.rows(), 3);
 
         igl::opengl::glfw::imgui::ImGuiPlugin plugin;

@@ -20,7 +20,7 @@ void menu()
             if (ImGui::Button("Reset", ImVec2(-1, 0))) {
                 init();
             }
-            if (ImGui::SliderFloat("Height", &g.height, 0.5f, 30.0f)) {
+            if (ImGui::SliderFloat("Height", &g.height, 0.5f, 10.0f)) {
                 init();
             }
             if (ImGui::Button("Cube", ImVec2(-1, 0))) {
@@ -35,12 +35,12 @@ void menu()
                 g.model = Model::PYRAMID;
                 init();
             }
-            if (ImGui::Button("Cone 1", ImVec2(-1, 0))) {
-                g.model = Model::CONE1;
+            if (ImGui::Button("Cone", ImVec2(-1, 0))) {
+                g.model = Model::CONE;
                 init();
             }
-            if (ImGui::Button("Cone 2", ImVec2(-1, 0))) {
-                g.model = Model::CONE2;
+            if (ImGui::Button("Pentagon", ImVec2(-1, 0))) {
+                g.model = Model::PENTAGON;
                 init();
             }
             if (ImGui::Button("Cylinder", ImVec2(-1, 0))) {

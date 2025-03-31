@@ -18,12 +18,8 @@ void init2()
     F = Eigen::MatrixXi();
     E = Eigen::MatrixXi();
 
-    // viewer.data().clear();
     viewer.data(g.model_layer).clear();
 
-    // V = Eigen::MatrixXd();
-    // F = Eigen::MatrixXi();
-    // std::cout << "V: "<< V << std::endl;
     load_models(g.model, V, F);
 
     g.playing = false;
@@ -37,7 +33,7 @@ void init2()
     igl::edges(F, E);
 
     static int ground_layer = -1;
-    // if (ground_layer != -1) return;
+    if (ground_layer != -1) return;
     ground_layer = viewer.append_mesh();
     Eigen::MatrixXd V_ground;
     Eigen::MatrixXi F_ground;
@@ -104,29 +100,20 @@ int main() {
 
     viewer.callback_pre_draw = [&](igl::opengl::glfw::Viewer &viewer_ptr) -> bool {
         auto &global = Global::getInstance();
-        static float height = g.height;
 
-        // if (global.V.rows() > 0 && V_original.rows() == 0) {
-        //     V_original = global.V;
-        // }
-
-        // if (global.height != height) {
-        //     init();
-        // }
         if (!global.playing) return false;
 
         const Eigen::MatrixXd forces = compute_spring_forces(global.V, global.E, global.stiffness, global.damping);
 
-        global.velocity *= 0.98;
         global.velocity += global.dt * forces;
         global.V += global.dt * global.velocity;
 
         for (int i = 0; i < global.V.rows(); ++i) {
-            if (global.V(i, 1) < -1.0) {
-                global.V(i, 1) = -1.0;
+            if (global.V(i, 1) < global.ground_level+0.02) {
+                global.V(i, 1) = global.ground_level+0.02;
                 global.velocity(i, 1) *= -0.03;
-                global.velocity(i, 0) *= 0.5;
-                global.velocity(i, 2) *= 0.5;
+                global.velocity(i, 0) *= 0.45;
+                global.velocity(i, 2) *= 0.55;
             }
         }
 
