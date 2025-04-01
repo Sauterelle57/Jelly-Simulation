@@ -93,6 +93,7 @@ int main() {
     viewer.callback_key_down = [&](igl::opengl::glfw::Viewer &, unsigned int key, int) -> bool {
         auto &global = Global::getInstance();
         if (key == 'A') global.playing = !global.playing;
+        if (key == 'R') init();
         return false;
     };
 
