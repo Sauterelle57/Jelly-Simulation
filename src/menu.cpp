@@ -18,6 +18,7 @@ void menu()
                 playing = !playing;
             }
             if (ImGui::Button("Reset", ImVec2(-1, 0))) {
+                if (g.custom_model != nullptr) g.model = Model::CUSTOM;
                 init();
             }
             if (ImGui::SliderFloat("Height", &g.height, 0.5f, 10.0f)) {

@@ -11,11 +11,7 @@ void init()
     auto &g = Global::getInstance();
     auto &viewer = g.viewer;
 
-    g.model = Model::CUBE;
     g.ground_level = -1.02;
-
-    if (g.custom_model != nullptr)
-        g.model = Model::CUSTOM;
 
     if (g.model_layer == -1) {
         g.model_layer = viewer.append_mesh();
@@ -68,7 +64,11 @@ int main(int argc, char **argv) {
     viewer.callback_key_down = [&](igl::opengl::glfw::Viewer &, unsigned int key, int) -> bool {
         auto &global = Global::getInstance();
         if (key == 'A') global.playing = !global.playing;
-        if (key == 'R') init();
+        if (key == 'R') {
+            if (global.custom_model != nullptr)
+                global.model = Model::CUSTOM;
+            init();
+        }
         return false;
     };
 
