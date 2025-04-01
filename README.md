@@ -1,4 +1,7 @@
 # Jelly Simulation
+<p align="center">
+  <img src="assets/web/jelly.gif" alt="https://dribbble.com/shots/2544717-Jelly">
+</p>
 
 ## Project
 
@@ -28,12 +31,14 @@ JellySimulation/
 │   └── pyramid.obj
 ├── build/
 └── assets/
-    ├── cube.png
-    ├── icosahedron.png
-    ├── cone.png
-    ├── cylinder.png
-    ├── pyramid.png
-    └── pentagon.png
+    ├── web/
+    │   └── jelly.gif
+    ├── cube.gif
+    ├── icosahedron.gif
+    ├── cone.gif
+    ├── cylinder.gif
+    ├── pyramid.gif
+    └── pentagon.gif
 ```
 
 - `README.md`: This file, containing the project documentation.
@@ -100,7 +105,12 @@ You can also control the simulation using the GUI:
 ![cylinder](assets/cylinder.gif)
 
 ## Author
+<p>
+  <img src="assets/web/pp.jpeg" alt="Marie Giacomel" width="100" height="100">
+    <br>
+</p>
 
-This project was created by [Marie Giacomel](https://www.linkedin.com/in/marie-giacomel/).
+  ### [Marie Giacomel](https://www.linkedin.com/in/marie-giacomel/)
+Student at Epitech and Concordia University, passionate about computer science and understanding how things work. This project was developed as part of my studies at Concordia University.
 
 Thank you for reading! Enjoy your Jelly simulations!
