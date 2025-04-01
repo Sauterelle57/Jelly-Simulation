@@ -2,8 +2,7 @@
 
 ## Project
 
-Jelly Simulation is a simulation project that models the behavior of diff
-erent jelly objects. The project uses numerical methods to simulate the deformation and movement of the jelly.
+Jelly Simulation is a simulation project that models the behavior of different jelly objects. The project uses numerical methods to simulate the deformation and movement of the jelly.
 
 The simulation is implemented in C++ and uses libraries such as [libigl](https://libigl.github.io/) for geometry processing. Users can interact with the simulation through controls to manipulate the jelly and observe its dynamic responses in real-time thanks to the [ImGui library](https://github.com/ocornut/imgui).
 
