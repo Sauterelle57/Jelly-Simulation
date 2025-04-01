@@ -2,7 +2,8 @@
 
 ## Project
 
-Jelly Simulation is a simulation project that models the behavior of different jelly objects. The project uses numerical methods to simulate the deformation and movement of the jelly.
+Jelly Simulation is a simulation project that models the behavior of diff
+erent jelly objects. The project uses numerical methods to simulate the deformation and movement of the jelly.
 
 The simulation is implemented in C++ and uses libraries such as [libigl](https://libigl.github.io/) for geometry processing. Users can interact with the simulation through controls to manipulate the jelly and observe its dynamic responses in real-time thanks to the [ImGui library](https://github.com/ocornut/imgui).
 
@@ -82,23 +83,22 @@ You can also control the simulation using the GUI:
 ## Galery
 
 ### With a cube
-![Cube](assets/cube.webm)
+![Cube](assets/cube.gif)
 
 ### With a icosahedron
-![icosahedron](assets/icosahedron.webm)
+![icosahedron](assets/icosahedron.gif)
 
 ### With a pyramid
-![pyramid](assets/pyramid.webm)
+![pyramid](assets/pyramid.gif)
 
 ### With a cone
-![cone](assets/cone.webm)
+![cone](assets/cone.gif)
 
 ### With a pentagon
-![pentagon](assets/pentagon.webm)
+![pentagon](assets/pentagon.gif)
 
 ### With a cylinder
-![cylinder](assets/cylinder.webm)
-
+![cylinder](assets/cylinder.gif)
 
 ## Author
 
