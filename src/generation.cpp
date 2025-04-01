@@ -2,9 +2,10 @@
 
 #include "sources.hpp"
 
-void generate_ground(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) {
+void generate_ground(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src)
+{
     auto &g = Global::getInstance();
-    double ground_level = g.ground_level;
+    const double ground_level = g.ground_level;
 
     V_src.resize(4, 3);
     F_src.resize(2, 3);
@@ -20,7 +21,8 @@ void generate_ground(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src
             0, 3, 2;
 }
 
-void generate_cube(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) {
+void generate_cube(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src)
+{
     auto &g = Global::getInstance();
     V_src.resize(8, 3);
     F_src.resize(12, 3);
@@ -50,7 +52,8 @@ void generate_cube(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) 
             3, 6, 7;
 }
 
-void generate_icosahedron(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) {
+void generate_icosahedron(const double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src)
+{
     const double phi = (1.0 + std::sqrt(5.0)) / 2.0;
     const double a = size / std::sqrt(1 + phi * phi);
     const double b = a * phi;
@@ -100,9 +103,10 @@ void generate_icosahedron(double size, Eigen::MatrixXd &V_src, Eigen::MatrixXi &
     V_src *= size;
 }
 
-void generate_cylinder(double radius, double height, int segments, Eigen::MatrixXd& V_src, Eigen::MatrixXi& F_src) {
-    int num_vertices = 2 * segments + 2;
-    int num_faces = 4 * segments + segments;
+void generate_cylinder(const double radius, const double height, const int segments, Eigen::MatrixXd& V_src, Eigen::MatrixXi& F_src)
+{
+    const int num_vertices = 2 * segments + 2;
+    const int num_faces = 4 * segments + segments;
     V_src.resize(num_vertices, 3);
     F_src.resize(num_faces, 3);
 
@@ -125,19 +129,29 @@ void generate_cylinder(double radius, double height, int segments, Eigen::Matrix
     }
 
     for (int i = 0; i < segments; i++) {
-        int next = (i + 1) % segments;
+        const int next = (i + 1) % segments;
         F_src.row(2 * segments + 2 * i) = Eigen::Vector3i(2 + i, 2 + next, 2 + segments + next);
         F_src.row(2 * segments + 2 * i + 1) = Eigen::Vector3i(2 + i, 2 + segments + next, 2 + segments + i);
     }
 
     for (int i = 0; i < segments; i++) {
-        int opposite = (i + segments / 2) % segments;
+        const int opposite = (i + segments / 2) % segments;
         F_src.row(4 * segments + i) = Eigen::Vector3i(2 + i, 2 + segments + opposite, 1);
     }
 }
 
+void load_custom_model(char *model_path, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src)
+{
+    auto &g = Global::getInstance();
+    g.custom_model = model_path;
 
-void load_models(Model model, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) {
+    if (!igl::readOBJ(model_path, V_src, F_src) && !igl::readOFF(model_path, V_src, F_src)) {
+        std::cerr << "Failed to load custom model from " << model_path << std::endl;
+    }
+}
+
+void load_models(const Model model, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src)
+{
     auto &g = Global::getInstance();
 
     g.ground_level = -1.02;
@@ -162,10 +176,13 @@ void load_models(Model model, Eigen::MatrixXd &V_src, Eigen::MatrixXi &F_src) {
         break;
         case Model::GROUND:
             generate_ground(15.0, V_src, F_src);
-            return;
+        return;
+        case Model::CUSTOM:
+            load_custom_model(g.custom_model, V_src, F_src);
+        break;
         default:
             std::cerr << "Unknown model type!" << std::endl;
-            return;
+        return;
     }
 
     V_src.rowwise() += Eigen::RowVector3d(0.0, g.height, 0.0);

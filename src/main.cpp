@@ -6,47 +6,16 @@
 
 #include "sources.hpp"
 
-void init2()
-{
-    auto &g = Global::getInstance();
-    auto &viewer = g.viewer;
-    auto &V = g.V;
-    auto &F = g.F;
-    auto &E = g.E;
-
-    V = Eigen::MatrixXd();
-    F = Eigen::MatrixXi();
-    E = Eigen::MatrixXi();
-
-    viewer.data(g.model_layer).clear();
-
-    load_models(g.model, V, F);
-
-    g.playing = false;
-    g.dt = 0.1f; // 0.05
-    g.stiffness = 5.0; // 20
-    g.damping = 0.2; // 0.05
-    g.velocity = Eigen::MatrixXd::Zero(V.rows(), 3);
-
-    viewer.data(g.model_layer).set_mesh(V, F);
-    viewer.core().is_animating = true;
-    igl::edges(F, E);
-
-    static int ground_layer = -1;
-    if (ground_layer != -1) return;
-    ground_layer = viewer.append_mesh();
-    Eigen::MatrixXd V_ground;
-    Eigen::MatrixXi F_ground;
-    load_models(Model::GROUND, V_ground, F_ground);
-
-    viewer.data(ground_layer).set_mesh(V_ground, F_ground);
-    viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
-}
-
 void init()
 {
     auto &g = Global::getInstance();
     auto &viewer = g.viewer;
+
+    g.model = Model::CUBE;
+    g.ground_level = -1.02;
+
+    if (g.custom_model != nullptr)
+        g.model = Model::CUSTOM;
 
     if (g.model_layer == -1) {
         g.model_layer = viewer.append_mesh();
@@ -84,11 +53,17 @@ void init()
     viewer.data(ground_layer).set_colors(Eigen::RowVector3d(0.9, 0.9, 0.9));
 }
 
-int main() {
-    init();
-
+int main(int argc, char **argv) {
     auto &g = Global::getInstance();
     auto &viewer = g.viewer;
+
+    if (argc > 1) {
+        g.model = Model::CUSTOM;
+        g.custom_model = argv[1];
+    }
+
+    init();
+
 
     viewer.callback_key_down = [&](igl::opengl::glfw::Viewer &, unsigned int key, int) -> bool {
         auto &global = Global::getInstance();

@@ -13,7 +13,8 @@ enum class Model
     CONE,
     CYLINDER,
     PENTAGON,
-    GROUND
+    GROUND,
+    CUSTOM,
 };
 
 class Global
@@ -30,6 +31,7 @@ class Global
         float ground_level = 0.0f;
         int model_layer = -1;
         Model model = Model::CUBE;
+        char *custom_model = nullptr;
         float height = 2.0f;
 
         bool playing = false;
