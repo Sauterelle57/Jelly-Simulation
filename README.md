@@ -177,32 +177,32 @@ Even if the deadline was at the end of the term, I took too much time to choose 
 
 ### With a `Cube` at `height = 2.0`
 
-![Cube](assets/cube.gif)
+<img src="assets/cube.gif" alt="cube" width="520" >
 > That's one small cube for man, on giant leap for Jelly-kind!
 
 ### With a `icosahedron` at `height = 2.0`
 
-![icosahedron](assets/icosahedron.gif)
+<img src="assets/icosahedron.gif" alt="icosahedron" width="520" >
 > This one is my favorite! :)
 
 ### With a `pyramid` at `height = 2.0`
 
-![pyramid](assets/pyramid.gif)
+<img src="assets/pyramid.gif" alt="pyramid" width="520" >
 > Even ancient structures can wiggle!
 
 ### With a `cone` at `height = 2.0`
 
-![cone](assets/cone.gif)
+<img src="assets/cone.gif" alt="cone" width="520" >
 > Not the most impressive one, but it works!
 
 ### With a `pentagon` at `height = 2.0`
 
-![pentagon](assets/pentagon.gif)
+<img src="assets/pentagon.gif" alt="pentagon" width="520" >
 > Because why not?
 
 ### With a `cylinder` at `height = 2.0`
 
-![cylinder](assets/cylinder.gif)
+<img src="assets/cylinder.gif" alt="cylinder" width="520" >
 > Sooo satisfying to watch!
 
 ****
