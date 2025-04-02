@@ -178,26 +178,32 @@ Even if the deadline was at the end of the term, I took too much time to choose 
 ### With a `Cube` at `height = 2.0`
 
 ![Cube](assets/cube.gif)
+> That's one small cube for man, on giant leap for Jelly-kind!
 
 ### With a `icosahedron` at `height = 2.0`
 
 ![icosahedron](assets/icosahedron.gif)
+> This one is my favorite! :)
 
 ### With a `pyramid` at `height = 2.0`
 
 ![pyramid](assets/pyramid.gif)
+> Even ancient structures can wiggle!
 
 ### With a `cone` at `height = 2.0`
 
 ![cone](assets/cone.gif)
+> Not the most impressive one, but it works!
 
 ### With a `pentagon` at `height = 2.0`
 
 ![pentagon](assets/pentagon.gif)
+> Because why not?
 
 ### With a `cylinder` at `height = 2.0`
 
 ![cylinder](assets/cylinder.gif)
+> Sooo satisfying to watch!
 
 ****
 
